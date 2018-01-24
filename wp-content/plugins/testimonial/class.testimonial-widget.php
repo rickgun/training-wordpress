@@ -1,26 +1,15 @@
 <?php
-/*
-Plugin Name: Testimonial Widget
-Plugin URI: http://example.com
-Description: Simple non-bloated WordPress Widget
-Version: 1.0
-Author: Sie Ricky Gunawan Setya
-Author URI: http://example.com
-*/
 
-/**
- * Adds Foo_Widget widget.
- */
-class Foo_Widget extends WP_Widget {
+class Testimonial_Widget extends WP_Widget {
 
 	/**
 	 * Register widget with WordPress.
 	 */
 	function __construct() {
 		parent::__construct(
-			'foo_widget', // Base ID
+			'testimonial_widget', // Base ID
 			esc_html__( 'Widget Title', 'text_domain' ), // Name
-			array( 'description' => esc_html__( 'A Foo Widget', 'text_domain' ), ) // Args
+			array( 'description' => esc_html__( 'User Testimonial Widget', 'text_domain' ), ) // Args
 		);
 	}
 
@@ -85,11 +74,12 @@ class Foo_Widget extends WP_Widget {
 		return $instance;
 	}
 
-} // class Foo_Widget
+} // class Testimonial_Widget
 
-// register Foo_Widget widget
-function register_foo_widget() {
-    register_widget( 'Foo_Widget' );
+// register Testimonial_Widget widget
+function register_testimonial_widget() {
+    register_widget( 'Testimonial_Widget' );
 }
-add_action( 'widgets_init', 'register_foo_widget' );
+
+add_action( 'widgets_init', 'register_testimonial_widget' );
 ?>

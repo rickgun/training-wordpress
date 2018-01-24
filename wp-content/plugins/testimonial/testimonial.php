@@ -1,12 +1,22 @@
 <?php
 /*
-Plugin Name: Example Contact Form Plugin
+Plugin Name: User Testimonial
 Plugin URI: http://example.com
 Description: Simple non-bloated WordPress Contact Form
 Version: 1.0
 Author: Sie Ricky Gunawan Setya
 Author URI: http://example.com
 */
+
+// Make sure we don't expose any info if called directly
+if ( !function_exists( 'add_action' ) ) {
+	echo 'Hi there!  I\'m just a plugin, no direct call please.';
+	exit;
+}
+
+define( 'TESTIMONIAL__PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
+
+require_once( TESTIMONIAL__PLUGIN_DIR . 'class.testimonial-widget.php' );
 
 function submit_form()
 {

@@ -18,7 +18,7 @@ define( 'TESTIMONIAL__PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 
 require_once( TESTIMONIAL__PLUGIN_DIR . 'class.testimonial-widget.php' );
 
-function submit_form()
+function testimonial_submit_form()
 {
 	global $wpdb;
 	prefix_enqueue();
@@ -60,7 +60,7 @@ function submit_form()
     }
 }
 
-function delete_data($id = 0)
+function testimonial_delete_data($id = 0)
 {
 	global $wpdb;
 	prefix_enqueue();
@@ -89,7 +89,7 @@ function delete_data($id = 0)
     }
 }
 
-function html_form_code()
+function testimonial_html_form_code()
 {
     echo '<form action="' . esc_url( $_SERVER['REQUEST_URI'] ) . '" method="post">';
     echo '<p>';
@@ -112,7 +112,7 @@ function html_form_code()
     echo '</form>';
 }
 
-function example_admin_page()
+function testimonial_example_admin_page()
 {
 	global $wpdb;
 	prefix_enqueue();
@@ -153,7 +153,7 @@ function example_admin_page()
 	<?php
 }
 
-add_shortcode( 'example_contact_form', 'cf_shortcode' );
+add_shortcode( 'testimonial_example_contact_form', 'cf_shortcode' );
 
 add_action( 'admin_menu', 'cf_admin_menu' );
 

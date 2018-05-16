@@ -119,7 +119,7 @@ function testimonial_example_admin_page()
 
 	if ($_GET['action'] == 'delete' && $_GET['id'] != 0)
 	{
-		delete_data($_GET['id']);
+		testimonial_delete_data($_GET['id']);
 	}
 
 	$testimonials = $wpdb->get_results("SELECT * FROM $wpdb->user_testimonial");
@@ -160,14 +160,14 @@ add_action( 'admin_menu', 'cf_admin_menu' );
 function cf_shortcode()
 {
 	ob_start();
-	submit_form();
-	html_form_code();
+	testimonial_submit_form();
+	testimonial_html_form_code();
 
 	return ob_get_clean();
 }
 
 function cf_admin_menu() {
-	add_menu_page( 'Example User Testimonial', 'User Testimonial', 'manage_options', 'example-contact-form/admin-page.php', 'example_admin_page', 'dashicons-tickets', 6  );
+	add_menu_page( 'Example User Testimonial', 'User Testimonial', 'manage_options', 'example-contact-form/testimonial_example_admin_page.php', 'testimonial_example_admin_page', 'dashicons-tickets', 6  );
 }
 
 function prefix_enqueue() 

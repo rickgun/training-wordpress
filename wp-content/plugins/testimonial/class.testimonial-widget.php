@@ -32,7 +32,7 @@ class Testimonial_Widget extends WP_Widget {
 
 		echo '
 		<div class="panel panel-default">
-			<div class="panel-heading"><a href="mailto:' . $random->email . '"><h3>' . $random->name . '</h3></div>
+			<div class="panel-heading"><h3>' . $random->name . '</h3></div>
 			<div class="panel-body">' . $random->testimonial . '</div>
 		</div>
 		';

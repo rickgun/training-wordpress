@@ -21,7 +21,6 @@ require_once( TESTIMONIAL__PLUGIN_DIR . 'class.testimonial-widget.php' );
 function testimonial_submit_form()
 {
 	global $wpdb;
-	prefix_enqueue();
 
     // if the submit button is clicked, send the email
     if ( isset( $_POST['cf-submitted'] ) ) {
@@ -63,7 +62,6 @@ function testimonial_submit_form()
 function testimonial_delete_data($id = 0)
 {
 	global $wpdb;
-	prefix_enqueue();
 
     // if the submit button is clicked, send the email
     if ( ! empty( $id ) )
@@ -115,7 +113,6 @@ function testimonial_html_form_code()
 function testimonial_example_admin_page()
 {
 	global $wpdb;
-	prefix_enqueue();
 
 	if ($_GET['action'] == 'delete' && $_GET['id'] != 0)
 	{
@@ -168,16 +165,5 @@ function cf_shortcode()
 
 function cf_admin_menu() {
 	add_menu_page( 'Example User Testimonial', 'User Testimonial', 'manage_options', 'example-contact-form/testimonial_example_admin_page.php', 'testimonial_example_admin_page', 'dashicons-tickets', 6  );
-}
-
-function prefix_enqueue() 
-{       
-    // JS
-    wp_register_script('prefix_bootstrap', '//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js');
-    wp_enqueue_script('prefix_bootstrap');
-
-    // CSS
-    wp_register_style('prefix_bootstrap', '//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css');
-    wp_enqueue_style('prefix_bootstrap');
 }
 ?>

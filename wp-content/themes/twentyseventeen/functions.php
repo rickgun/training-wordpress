@@ -17,6 +17,22 @@ if ( version_compare( $GLOBALS['wp_version'], '4.7-alpha', '<' ) ) {
 	return;
 }
 
+
+function prefix_enqueue() 
+{       
+    // JS
+    wp_register_script('jquery', 'http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js');
+    wp_enqueue_script('jquery');
+    
+    wp_register_script('prefix_bootstrap', '//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js');
+    wp_enqueue_script('prefix_bootstrap');
+
+    // CSS
+    wp_register_style('prefix_bootstrap', '//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css');
+    wp_enqueue_style('prefix_bootstrap');
+}
+add_action('wp_enqueue', 'prefix_enqueue');
+
 /**
  * Sets up theme defaults and registers support for various WordPress features.
  *

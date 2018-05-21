@@ -23,39 +23,42 @@ function testimonial_submit_form()
 	global $wpdb;
 
     // if the submit button is clicked, send the email
-    if ( isset( $_POST['cf-submitted'] ) ) {
+    if ( isset($_POST['cf-submitted']) ) {
+    	if ( isset($_POST['cf-submitted']) && isset($_POST['cf-submitted']) && isset($_POST['cf-submitted']) && isset($_POST['cf-submitted']) ) {
+	        // sanitize form values
+			$name        = sanitize_text_field( $_POST["cf-name"] );
+			$email       = sanitize_email( $_POST["cf-email"] );
+			$phone       = sanitize_text_field( $_POST["cf-phone"] );
+			$testimonial = nl2br(esc_textarea( $_POST["cf-testimonial"] ));
 
-        // sanitize form values
-		$name        = sanitize_text_field( $_POST["cf-name"] );
-		$email       = sanitize_email( $_POST["cf-email"] );
-		$phone       = sanitize_text_field( $_POST["cf-phone"] );
-		$testimonial = nl2br(esc_textarea( $_POST["cf-testimonial"] ));
-
-        // insert data into database
-        if (
-        	$wpdb->insert(
-	        	'wp_user_testimonial',
-	        	array(
-					'name'        => $name,
-					'email'       => $email,
-					'phone'       => $phone,
-					'testimonial' => $testimonial
-	        	),
-	        	array(
-	        		'%s',
-	        		'%s',
-	        		'%s',
-	        		'%s'
-	        	)
-	        )
-        ) {
-        	echo '<div class="alert alert-success">Your form has been submitted</div>';
-        }
-        else
-        {
-        	echo '<div class="alert alert-danger">There has been something wrong.</div>';
-        }
-
+	        // insert data into database
+	        if (
+	        	$wpdb->insert(
+		        	'wp_user_testimonial',
+		        	array(
+						'name'        => $name,
+						'email'       => $email,
+						'phone'       => $phone,
+						'testimonial' => $testimonial
+		        	),
+		        	array(
+		        		'%s',
+		        		'%s',
+		        		'%s',
+		        		'%s'
+		        	)
+		        )
+	        ) {
+	        	echo '<div class="alert alert-success">Your form has been submitted</div>';
+	        }
+	        else
+	        {
+	        	echo '<div class="alert alert-danger">There has been something wrong.</div>';
+	        }
+    	}
+    	else {
+        	echo '<div class="alert alert-danger">All fields must be filled.</div>';
+    	}
     }
 }
 

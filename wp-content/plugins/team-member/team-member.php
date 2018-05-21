@@ -9,6 +9,7 @@
 	License: GPLv2
 	*/
 
+	global $post;
 	function create_team_member() {
 	    register_post_type( 'team_members',
 	        array(
@@ -76,47 +77,27 @@
 	    return $meta_boxes;
 	}
 
-	function include_template_function( $template_path ) {
-	    if ( get_post_type() == 'team_members' ) {
-	        if ( is_single() ) {
-	            if ( $theme_file = locate_template( array ( 'single-team_members.php' ) ) ) {
-	                $template_path = $theme_file;
-	            } else {
-	                $template_path = plugin_dir_path( __FILE__ ) . '/inc/templates/single-team_members.php';
-	            }
-	        }
-	    }
-	    return $template_path;
-	}
-
-	function team_member_position() {
-		echo 'Position: ' . get_post_meta( get_the_ID(), 'team_member_position', true ) . '<br>';
-	}
-	function team_member_email() {
-		echo 'Email: ' . get_post_meta( get_the_ID(), 'team_member_email', true ) . '<br>';
-	}
-	function team_member_phone() {
-		echo 'Phone: ' . get_post_meta( get_the_ID(), 'team_member_phone', true ) . '<br>';
-	}
-	function team_member_website() {
-		echo 'Website: ' . get_post_meta( get_the_ID(), 'team_member_website', true ) . '<br>';
-	}
-	function team_member_image() {
-		$dir = wp_upload_dir(null, false);
-        echo '
-            <div class="img-circle img-responsive">
-                <center><img src="' . $dir['baseurl'] . '/' . get_post_meta( get_post_meta( get_the_ID(), 'team_member_image', true ), '_wp_attached_file', true ) . '" style="width:200px; height:200px"></center>
-            </div>
-        ';
+	function team_member($atts) {
+		if ($atts['position'])
+			echo 'Position: ' . get_post_meta( get_the_ID(), 'team_member_position', true ) . '<br>';
+		if ($atts['email'])
+			echo 'Email: ' . get_post_meta( get_the_ID(), 'team_member_email', true ) . '<br>';
+		if ($atts['phone'])
+			echo 'Phone: ' . get_post_meta( get_the_ID(), 'team_member_phone', true ) . '<br>';
+		if ($atts['website'])
+			echo 'Website: ' . get_post_meta( get_the_ID(), 'team_member_website', true ) . '<br>';
+		if ($atts['image']) {
+			$dir = wp_upload_dir(null, false);
+	        echo '
+	            <div class="img-circle img-responsive">
+	                <center><img src="' . $dir['baseurl'] . '/' . get_post_meta( get_post_meta( get_the_ID(), 'team_member_image', true ), '_wp_attached_file', true ) . '" style="width:200px; height:200px"></center>
+	            </div>
+	        ';
+		}
 	}
 
 	add_action( 'init', 'create_team_member' );
 	add_action( 'init', 'prefix_enqueue' );
+	add_shortcode('team_member', 'team_member');
 	add_filter( 'rwmb_meta_boxes', 'prefix_register_team_member_meta_boxes' );
-	// add_filter( 'template_include', 'include_template_function', 1 );
-	add_shortcode('tm_position', 'team_member_position');
-	add_shortcode('tm_email', 'team_member_email');
-	add_shortcode('tm_phone', 'team_member_phone');
-	add_shortcode('tm_website', 'team_member_website');
-	add_shortcode('tm_image', 'team_member_image');
 ?>

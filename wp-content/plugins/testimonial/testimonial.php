@@ -122,7 +122,7 @@ function testimonial_example_admin_page()
 		testimonial_delete_data($_GET['id']);
 	}
 
-	$testimonials = $wpdb->get_results("SELECT * FROM $wpdb->user_testimonial");
+	$testimonials = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}user_testimonial");
 	?>
 	<div class="wrap">
 		<h2>User Testimonial</h2>

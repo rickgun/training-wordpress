@@ -125,45 +125,7 @@
 		';
 	}
 
-	function single_member($atts) {
-	    echo '
-<div id="primary">
-    <div id="content" role="main">
-        <div class="row">
-            <div class="col-sm-4 text-center">
-                <article id="post-{the_ID()}" {post_class()}>
-                    <header class="entry-header">
-            ';
-
-			if ($atts['image']) {
-				$dir = wp_upload_dir(null, false);
-		        echo '
-		            <div class="img-circle img-responsive">
-		                <center><img src="' . $dir['baseurl'] . '/' . get_post_meta( get_post_meta( get_the_ID(), 'team_member_image', true ), '_wp_attached_file', true ) . '" style="width:200px; height:200px"></center>
-		            </div>
-		        ';
-			}
-			if ($atts['position'])
-				echo 'Position: ' . get_post_meta( get_the_ID(), 'team_member_position', true ) . '<br>';
-			if ($atts['email'])
-				echo 'Email: ' . get_post_meta( get_the_ID(), 'team_member_email', true ) . '<br>';
-			if ($atts['phone'])
-				echo 'Phone: ' . get_post_meta( get_the_ID(), 'team_member_phone', true ) . '<br>';
-			if ($atts['website'])
-				echo 'Website: ' . get_post_meta( get_the_ID(), 'team_member_website', true ) . '<br>';
-
-			echo '
-                    </header>
-                </article>
-            </div>
-        </div>
-    </div>
-</div>
-		';
-	}
-
 	add_action( 'init', 'create_team_member' );
 	add_shortcode('team_members', 'team_members');
-	add_shortcode('single_member', 'single_member');
 	add_filter( 'rwmb_meta_boxes', 'prefix_register_team_member_meta_boxes' );
 ?>

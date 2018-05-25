@@ -15,8 +15,13 @@
 
   <body>
 
-		<nav class="navbar navbar-light bg-light static-top">
-		  <div class="container">
-		    <a class="navbar-brand" href="#"><?php bloginfo('name'); ?></a>
-		  </div>
-		</nav>
+	<header id="masthead" class="site-header" role="banner">
+
+		<?php wp_nav_menu( array( 'theme_location' => 'my-custom-menu' ) ); ?>
+
+	</header><!-- #masthead -->
+	<nav class="navbar navbar-light bg-light static-top">
+	  <div class="container">
+	    <a class="navbar-brand" href="#"><?php bloginfo('name'); ?></a>
+	  </div>
+	</nav>

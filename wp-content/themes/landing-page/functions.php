@@ -10,6 +10,11 @@ function load_css() {
 }
 add_action( 'wp_enqueue_scripts', 'load_css' );
 
+function my_custom_menu() {
+  register_nav_menu('my-custom-menu',__( 'My Custom Menu' ));
+}
+add_action( 'init', 'my_custom_menu' );
+
 function my_custom_sidebar() {
     register_sidebar(
         array (
